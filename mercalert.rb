@@ -44,11 +44,13 @@ def main
 	$excluded = load_excluded_logs($ngfile)
 	$stdout.sync = true
 	
-	oktime = latest_checked_log($logdir + "20??????-??????.tsv").mtime
-	lapse = (Time.now - oktime).to_i
-	if lapse <= $opts["interval"].to_i
-		$stderr.puts "Ran #{lapse} seconds ago"
-		exit(0)
+	lastokfile = latest_checked_log($logdir + "20??????-??????.tsv")
+	if lastokfile
+		lapse = (Time.now - lastokfile.mtime).to_i
+		if lapse <= $opts["interval"].to_i
+			$stderr.puts "Ran #{lapse} seconds ago"
+			exit(0)
+		end
 	end
 	puts "\n========  #{$timestamp}  ========"
 	open($opts["conf"]) do |f|

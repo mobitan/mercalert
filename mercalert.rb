@@ -1,7 +1,7 @@
 #!/usr/bin/ruby -Ku
 #
 #   	Mercalert
-#   	2017/10/21  by mobitan
+#   	2018/09/04  by mobitan
 #
 
 $help_message = <<-EOM
@@ -268,7 +268,7 @@ end
 
 # HTML エントリ生成
 def html_entry(item_url, table, doc)
-	item_name = texts_in(doc, "h2.item-name")
+	item_name = texts_in(doc, "h1.item-name")
 	item_price = doc.css("span.item-price")[0].text.strip
 	img_urls = attrs_in(doc, "div.item-photo img", "data-src").split("\n")
 	html = ""

@@ -269,7 +269,7 @@ end
 # HTML エントリ生成
 def html_entry(item_url, table, doc)
 	item_name = texts_in(doc, "h2.item-name")
-	item_price = texts_in(doc, "span.item-price")
+	item_price = doc.css("span.item-price")[0].text.strip
 	img_urls = attrs_in(doc, "div.item-photo img", "data-src").split("\n")
 	html = ""
 	html << "<div class=\"entry\">\n"
